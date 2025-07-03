@@ -16,7 +16,7 @@ async function getCacheKey(filename: string, options: string) {
 		"SHA-256",
 		new TextEncoder().encode(`${filename}?${options}`),
 	);
-	return encodeBase64Url(buf);
+	return `cache/${encodeBase64Url(buf)}`;
 }
 
 export class ImgProxySigner {
@@ -74,7 +74,7 @@ export class TransformerService {
 			data: { filename, options },
 		} = await this.tokenService.verify<TokenPayload>(token, ["file:transform"]);
 		const cachedKey = await getCacheKey(filename, options);
-		const cachedUrl = `${this.r2Domain}/cache/${cachedKey}`;
+		const cachedUrl = `${this.r2Domain}/${cachedKey}`;
 		const publicUrl = `${this.r2Domain}/${filename}`;
 		// const publicUrl ="https://fastly.picsum.photos/id/664/200/300.jpg?hmac=Ov1G0ZpIuC3e0t33HURn4DPJFK6o7bz602P6M-o_SDc";
 		const imgproxyUrl = await this.imgproxySigner.sign(publicUrl, options);

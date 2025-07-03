@@ -1,7 +1,8 @@
 import { hc } from "hono/client";
 import type { App } from "../src/app";
 
-export const client = hc<App>("http://localhost:8787", {
+export const authorization = "Bearer !!!";
+export const client = hc<App>("https://image-storage-kf.falent.workers.dev", {
 	fetch: async (url: string, init: RequestInit) => {
 		console.log(JSON.stringify({ url, init }, null, 2));
 		const res = await fetch(url, init);

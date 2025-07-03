@@ -1,7 +1,7 @@
-import { client } from "./_shared";
+import { authorization, client } from "./_shared";
 
 const image =
-	"image/f8104611-edfe-48a4-b1f3-39e09c79f8f2/a6ed207a-c810-47bc-ac01-8e92f797d940";
+	"image/dcb20d92-0694-4883-a706-46cda9411a51/c6a3f74c-5857-446e-935e-99b66ec62c6e";
 
 const { token } = await client.transform["generate"]
 	.$post(
@@ -13,7 +13,7 @@ const { token } = await client.transform["generate"]
 		},
 		{
 			headers: {
-				Authorization: "Bearer foo",
+				authorization,
 			},
 		},
 	)
