@@ -112,6 +112,8 @@ export class TransformerService {
 		await this.r2.put(cachedKey, response.body, {
 			httpMetadata: {
 				contentType: response.headers.get("content-type") ?? undefined,
+				// one month of cache
+				cacheControl: "public, max-age=2592000, stale-while-revalidate=600",
 			},
 		});
 		return cachedUrl;
