@@ -59,10 +59,16 @@ export class TransformerService {
 	) {}
 
 	generateToken(filename: string, options: string) {
+		const now = new Date();
+		const endOfDay = new Date(
+			now.getFullYear(),
+			now.getMonth(),
+			now.getDate() + 1,
+		);
 		return this.tokenService.sign<TokenPayload>(
 			{
 				permissions: ["file:transform"],
-				expiration: "24h",
+				expiration: endOfDay,
 				data: { options, filename },
 			},
 			true,

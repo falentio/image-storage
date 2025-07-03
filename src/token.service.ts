@@ -4,7 +4,7 @@ import { FriendlyError } from "./friendly-error";
 
 export type TokenPayload<T = undefined> = {
 	permissions: string[];
-	expiration: string;
+	expiration: string | Date;
 	data: T;
 } & Omit<JWTPayload, "exp">;
 
