@@ -9,5 +9,8 @@
 			"bucket_name": "image-storage",
 			"binding": "IMAGE_STORAGE"
 		}
-	]
+	],
+	"observability": {
+		"enabled": true
+	}
 }

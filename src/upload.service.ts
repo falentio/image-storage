@@ -8,7 +8,7 @@ import type { AuthMiddleware } from "./auth.service";
 export type UploadRequest = {
 	filename: string;
 	contentType?: string;
-	body: ReadableStream | Uint8Array;
+	body: File;
 };
 
 export type UploadImage = {
@@ -36,7 +36,7 @@ export class UploadService {
 		const path = `image/${crypto.randomUUID()}/${req.filename}`;
 		await this.r2.put(path, req.body, {
 			httpMetadata: {
-				contentType: req.contentType,
+				contentType: req.body.type,
 			},
 		});
 		return path;
@@ -83,7 +83,7 @@ export function uploadRouter(
 						c.req.header("Content-Disposition")?.split("filename=")[1] ||
 						crypto.randomUUID(),
 					contentType: c.req.header("Content-Type"),
-					body: c.req.valid("form").image.stream(),
+					body: c.req.valid("form").image,
 				};
 				const filename = await uploadService.upload(token, req);
 				return c.json({ filename });
