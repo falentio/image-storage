@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  imgproxy:
+    image: ghcr.io/imgproxy/imgproxy:latest
+    ports:
+      - "4000:4000"
+    environment:
+      PORT: 4000
+      IMGPROXY_KEY: 9e979a7388ef922073998a43765114a1a51a892336306eeb24749f70da57451a
+      IMGPROXY_SALT: 5368a26085a86629986423933c162649b1065961652613c0fd996ca46245242d
+      IMGPROXY_ALLOW_ORIGIN: "*"
+
+volumes:
+  imgproxy:

@@ -1,0 +1,13 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "imgproxy",
+	"compatibility_date": "2025-07-03",
+	"compatibility_flags": ["nodejs_compat"],
+	"main": "src/index.ts",
+    "r2_buckets": [
+        {
+			"bucket_name": "image-storage",
+			"binding": "IMAGE_STORAGE"
+		}
+	]
+}
