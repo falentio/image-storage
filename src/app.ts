@@ -52,7 +52,7 @@ export function createApp(env: Record<string, unknown>) {
 				);
 			}
 
-			console.log(e);
+			console.error(e);
 			return ctx.json(
 				{
 					error: "internal server error",
