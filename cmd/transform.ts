@@ -1,7 +1,7 @@
 import { authorization, client } from "./_shared";
 
 const image =
-	"image/dcb20d92-0694-4883-a706-46cda9411a51/c6a3f74c-5857-446e-935e-99b66ec62c6e";
+	"image/5f7fecec-9c29-4c01-9399-b16de3c67be2/b4ef8cdc-7f6b-4152-a966-afebc702cec1";
 
 const { token } = await client.transform["generate"]
 	.$post(

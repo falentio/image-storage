@@ -68,12 +68,13 @@ export function uploadRouter(
 			const token = await uploadService.getToken();
 			return c.json({ token });
 		})
-		.put(
+		.on(
+			["POST", "PUT"],
 			"/upload/:token",
 			vValidator(
 				"form",
 				v.object({
-					image: v.instance(File),
+					image: v.pipe(v.instance(File), v.maxSize(10 * 1024 * 1024)), // 10 MB max size
 				}),
 			),
 			async (c) => {
