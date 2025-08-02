@@ -10,6 +10,7 @@ import { uploadRouter, UploadService } from "./upload.service";
 import { Hono } from "hono";
 import { FriendlyError } from "./friendly-error";
 import type { ContentfulStatusCode } from "hono/utils/http-status";
+import { cors } from "hono/cors";
 
 export const AppConfig = v.object({
 	IMAGE_STORAGE_DOMAIN: v.pipe(v.string(), v.nonEmpty()),
@@ -60,6 +61,14 @@ export function createApp(env: Record<string, unknown>) {
 				500,
 			);
 		})
+		.use(
+			cors({
+				origin: "*",
+				allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+				allowHeaders: ["Authorization", "Content-Type"],
+				credentials: false,
+			}),
+		)
 		.get("/check", am.check, (c) => c.json({ ok: true }))
 		.route("/", uploadRouter(uploadService, am))
 		.route("/", transformerRouter(transformerService, am));
